@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
+  <title>Big</title>
+  <link href='big.css' rel='stylesheet' type='text/css' />
+  <link href='highlight.css' rel='stylesheet' type='text/css' />
+  <style>
+    .new-shiny { background: #aaaaaa; }
+
+    @-webkit-keyframes blinker {
+      from { opacity: 1.0; }
+      to { opacity: 0.5; }
+    }
+
+    .blink {
+      -webkit-animation-name: blinker;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-timing-function: cubic-bezier(1.0,0,0,1.0);
+      -webkit-animation-duration: 800ms;
+    }
+  </style>
+  <script src='big.js'></script>
+  <script src='highlight.js'></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body class='light'>
+  <div class="title">
+    <div style="height: 30%">
+      Fullstack<span class="bubblegum">2019</span>
+      <!--<em><i><span class="blink">knowledge sharing</span></i></em>-->
+    </div>
+    <div style="font-size: 0.2em">
+      <span class="supersplit">@</span>Lisa Li
+    </div>
+  </div>
+  <div>
+    <u><em>Worker</em></u>
+    <code> - The worker_threads module enables the use of threads that execute JavaScript in parallel</code>
+      <li>AudioWorklet </li>
+      <li>PaintWorklet</li>
+      <li>AnimationWorklet</li>
+      <li>LayoutWorklet </li>
+    </ul>
+  </div>
+  <div>
+    <pre><code>
+      &lt;button onclick="startComputation()">Start computation&lt;/button>
+
+      function startComputation () {
+        worker.postMessage({'cmd': 'average', 'data': [1, 2, 3, 4]});
+      }
+      const worker = new Worker('doWork.js');
+
+      worker.addEventListener('message', function(e) {
+        console.log(e.data);
+      }, false);
+
+      //doWork.js
+      self.addEventListener('message', function(e) {
+        const data = e.data;
+        switch (data.cmd) {
+          case 'average':
+                var result = calculateAverage(data); // Some function that calculates the average from the numeric array.
+                self.postMessage(result);
+                break;
+          default:
+                self.postMessage('Unknown command');
+        }
+      }, false);
+    </code></pre>
+
+  </div>
+  <div>
+    <u><em>Web Worker limitations</em></u><br/>
+
+    <code>Web Workers don’t have access to some very crucial JavaScript features</code>
+    <ul>
+      <li>The DOM</li>
+      <li>The window object</li>
+      <li>The document object</li>
+      <li>The parent object</li>
+    </ul>
+  </div>
+  <div>
+    <span class="bubblegum">Feature-policy</span> is coming...</em>
+  </div>
+  <div>
+    <u><em>Feature-policy can be used for:</em></u>
+    <ul>
+    <li>I am embedding an iframe and I do not want the embedded site to be able to access the camera of my visitor;</li>
+      <li>I want to catch situations where unoptimized images are deployed to my site via the CMS;</li>
+      <li>There are many developers working on my project, and I would like to know if they use outdated APIs such as document.write.</li>
+    </ul>
+    All of these things can be tracked, blocked or reported on as part of Feature Policy.
+  </div>
+  <div>
+     <pre><code>
+      Feature-Policy: "vibrate none; geolocation none; unsized-media http://example.com;"
+    </code></pre>
+  </div>
+  <div>
+    <u><em>A new security HTTP Response Header</em></u>
+    <ul>
+      <li>geolocation</li>
+      <li>midi</li>
+      <li>notifications</li>
+      <li>push</li>
+      <li>sync-xhr</li>
+      <li>microphone</li>
+      <li>camera</li>
+      <li>magnetometer</li>
+      <li>gyroscope</li>
+      <li>speaker</li>
+      <li>vibrate</li>
+      <li>fullscreen</li>
+      <li>payment (PaymentRequest)</li>
+    </ul>
+  </div>
+  <div>
+    <u><em>TypeScript support</em></u>
+    <img src="./ts-surface-summary.png" style="width: 90% !important;"></a>
+    <code>Angular | Aurelia | DoJo | Ember | React | Stencil | Svelte | Vue </code> <br/>
+    <code> more... meteor, polymer, backbone, knockout, next, ionic</code>
+  </div>
+  <div>
+    GraphQL <em>Security</em>
+  </div>
+  <div>
+    <ul>
+      <li>
+        <code>Changing route
+          <br/>
+          - This makes it a target
+          <pre><code>'/graphql'</code></pre>
+          - disable
+          <pre><code>'/graphiql'</code></pre>
+          Tools: graphql-ide / Insomnia
+        </code>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <ul>
+      <li>
+        <code>Introspection
+          - allow user to inspect the entire graphql schema #entire data model
+          <pre><code>'disable introspection in testing and production environments'</code></pre>
+        </code>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <ul>
+      <li>
+        <code>Authentication
+          <pre><code>'JWT'</code></pre>
+          <pre><code>'JSON Web Tokens'</code></pre>
+          <pre><code>'ACL'- Access Control</code></pre>
+          <code>Just like an API</code>
+        </code>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <ul>
+      <li>
+        <code>Depth / Complexity</code> <br/>
+         No more than 5
+        <img src="./graphql-depth.png" style="width: 90% !important;">
+      </li>
+    </ul>
+  </div>
+  <div>
+    <ul>
+      <li>
+        <code>Generators</code> <br/>
+        <img src="./graphql-generator.png" style="width: 70% !important;"><br/>
+         Schema Definition Language (SDL)
+      </li>
+    </ul>
+  </div>
+  <div style="text-align: center">
+    <img src="./graphql-rest.png" style="width: 70% !important;">
+  </div>
+  <div style="text-align: center">
+        <img src="./graphql-resolver.png" style="width: 70% !important;">
+  </div>
+
+
+  <div><em>Distributed GraphQL</em> for Enterprise Systems</div>
+  <div style="...">
+    <img src="./graphql-d-old.png"></a>
+  </div>
+  <div style="...">
+    <img src="./graphql-d-old-1.png"></a>
+  </div>
+  <div>
+    <img src="./graphql-d-new.png"></a>
+  </div>
+  <div>
+    <img src="./graphql-d-new-1.png"></a>
+  </div>
+  <div>
+    <img src="./graphql-d-new-2.png"></a>
+  </div>
+  <div>
+    <img src="./graphql-d-new-3.png"></a>
+  </div>
+  <div>
+    <img src="./graphql-d-new-4.png"></a>
+  </div>
+  <div>
+    <img src="./graphql-d-new-5.png"></a>
+  </div>
+
+</body>
+</html>
